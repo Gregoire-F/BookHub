@@ -28,9 +28,16 @@ class Category
     #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'category', orphanRemoval: true)]
     private Collection $Book;
 
+    /**
+     * @var Collection<int, Book>
+     */
+    #[ORM\OneToMany(targetEntity: Book::class, mappedBy: 'category', orphanRemoval: true)]
+    private Collection $book;
+
     public function __construct()
     {
         $this->Book = new ArrayCollection();
+        $this->book = new ArrayCollection();
     }
 
     public function getId(): ?int
