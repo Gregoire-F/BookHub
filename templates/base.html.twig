@@ -18,6 +18,8 @@
                 <a class="bg-gray-600 rounded-lg px-4 py-2 cursor-pointer hover:bg-gray-700" href="{{ path('app_register') }}">Register</a>
             {% else %}
                 <a href="{{ path('app_books_index') }}">Voir tous les livres</a>
+                <a href="{{ path('app_authors_index') }}">Voir tous les auteurs</a>
+
 
                 {% if is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('app_book_index') }}">Admin - Livres</a>
