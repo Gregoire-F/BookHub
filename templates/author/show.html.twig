@@ -1,26 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Author{% endblock %}
+{% block title %}{{ author.name }}{% endblock %}
 
 {% block body %}
-    <h1>Author</h1>
+<section class="max-w-2xl mx-auto mt-8 px-4">
+    <a href="{{ path('app_author_index') }}"
+       class="text-sm text-gray-500 hover:text-gray-700 transition-colors mb-6 inline-block">
+        ← Retour à la liste
+    </a>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ author.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ author.name }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="bg-white rounded-xl shadow p-8 flex flex-col gap-5">
+        <h1 class="font-bold text-2xl text-gray-800">{{ author.name }}</h1>
+        <hr class="border-gray-100">
 
-    <a href="{{ path('app_author_index') }}">back to list</a>
+        <div class="flex flex-col gap-1 text-sm">
+            <span class="text-gray-400 uppercase tracking-wide text-xs">ID</span>
+            <span class="text-gray-700">{{ author.id }}</span>
+        </div>
 
-    <a href="{{ path('app_author_edit', {'id': author.id}) }}">edit</a>
+        <hr class="border-gray-100">
 
-    {{ include('author/_delete_form.html.twig') }}
+        <div class="flex gap-3 items-center">
+            <a href="{{ path('app_author_edit', {'id': author.id}) }}"
+               class="bg-gray-700 hover:bg-gray-800 text-white rounded-lg px-4 py-2 text-sm transition-colors">
+                Modifier
+            </a>
+            {{ include('author/_delete_form.html.twig') }}
+        </div>
+    </div>
+</section>
 {% endblock %}

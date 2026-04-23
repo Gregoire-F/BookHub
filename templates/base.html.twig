@@ -11,29 +11,34 @@
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
-    <body>
-<nav class="w-full text-white mx-auto p-4 bg-gray-800 flex items-center justify-between">
-    {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-        <a class="text-2xl cursor-pointer" href="{{ path('app_home') }}">{{ ux_icon('bi:house-fill') }}</a>
-        <div class="flex gap-4">
-            <a class="bg-gray-600 rounded-lg px-4 py-2 cursor-pointer hover:bg-gray-700" href="{{ path('app_login') }}">Se connecter</a>
-            <a class="bg-gray-600 rounded-lg px-4 py-2 cursor-pointer hover:bg-gray-700" href="{{ path('app_register') }}">Créer un compte utilisateur</a>
+    <body class="bg-gray-100 min-h-screen">
+
+<nav class="w-full text-white bg-gray-800 px-6 py-3 flex items-center gap-4">
+    <a class="text-xl mr-2" href="{{ path('app_home') }}">{{ ux_icon('bi:house-fill') }}</a>
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a class="text-sm hover:text-gray-300 transition-colors" href="{{ path('app_books_index') }}">Livres</a>
+        <a class="text-sm hover:text-gray-300 transition-colors" href="{{ path('app_authors_index') }}">Auteurs</a>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <span class="text-gray-500 text-xs">|</span>
+            <span class="text-gray-400 text-xs uppercase tracking-wider">Admin :</span>
+            <a class="text-sm hover:text-gray-300 transition-colors" href="{{ path('app_book_index') }}">Livres</a>
+            <a class="text-sm hover:text-gray-300 transition-colors" href="{{ path('app_author_index') }}">Auteurs</a>
+            <a class="text-sm hover:text-gray-300 transition-colors" href="{{ path('app_category_index') }}">Catégories</a>
+        {% endif %}
+
+        <a class="ml-auto bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-2 text-sm transition-colors"
+           href="{{ path('app_logout') }}">Se déconnecter</a>
+    {% else %}
+        <div class="ml-auto flex gap-3">
+            <a class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-2 text-sm transition-colors"
+               href="{{ path('app_login') }}">Se connecter</a>
+            <a class="bg-blue-500 hover:bg-blue-600 rounded-lg px-4 py-2 text-sm transition-colors"
+               href="{{ path('app_register') }}">Créer un compte</a>
         </div>
-            {% else %}
-                <a class="text-2xl" href="{{path('app_home')}}">{{ ux_icon('bi:house-fill') }}</a>
-                <a href="{{ path('app_books_index') }}">Voir tous les livres</a>
-                <a href="{{ path('app_authors_index') }}">Voir tous les auteurs</a>
-
-
-                {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('app_book_index') }}">Admin - Livres</a>
-                    <a href="{{ path('app_author_index') }}">Admin - Auteurs</a>
-                    <a href="{{ path('app_category_index') }}">Admin - Catégories</a>
-                {% endif %}
-
-                <a href="{{ path('app_logout') }}">Se déconnecter</a>
-            {% endif %}
-        </nav>
+    {% endif %}
+</nav>
 
         {% block body %}{% endblock %}
     </body>

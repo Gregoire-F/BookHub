@@ -3,18 +3,29 @@
 {% block title %}BookHub - Accueil{% endblock %}
 
 {% block body %}
-<section class="max-w-5xl bg-gray-800 text-white mx-auto p-4 mt-6">
-    <div class="flex justify-center mb-4"><h1 class="bold text-4xl">Bienvenue sur BookHub</h1></div>
-    <div class="flex justify-center"><p>Découvrez notre catalogue de livres et d'auteurs.</p></div>
-</section>
-    <section class="max-w-5xl bg-gray-200 mx-auto p-4 mt-6">
-    <h2 class="text-center text-xl mb-4">Aperçu de notre selection</h2>
-    {% for book in books %}
-        <div>
-            <a class="underline" href="{{ path('app_books_show', {'id': book.id}) }}">{{ book.title }}</a>
-            - {{ book.author.name }} ({{ book.year ? book.year|date('Y') : '' }})
-        </div>
-    {% endfor %}
-</section>
+<section class="max-w-5xl mx-auto mt-10 px-4">
 
+    <div class="bg-gray-800 text-white rounded-xl p-10 text-center mb-10">
+        <h1 class="font-bold text-4xl mb-3">Bienvenue sur BookHub</h1>
+        <p class="text-gray-300">Découvrez notre catalogue de livres et d'auteurs.</p>
+    </div>
+
+    <h2 class="text-xl font-semibold text-gray-700 mb-4">Aperçu de notre sélection</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {% for book in books %}
+            <div class="bg-white rounded-xl shadow hover:shadow-md transition-shadow p-5 flex flex-col gap-2">
+                <h3 class="font-semibold text-gray-800">{{ book.title }}</h3>
+                <span class="text-sm text-gray-500">
+                    ✍️ {{ book.author.name }}{% if book.year %} · {{ book.year|date('Y') }}{% endif %}
+                </span>
+                <a href="{{ path('app_books_show', {'id': book.id}) }}"
+                   class="mt-auto text-center bg-blue-500 hover:bg-blue-600 text-white text-sm rounded-lg px-4 py-2 transition-colors cursor-pointer">
+                    Voir le détail
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+</section>
 {% endblock %}

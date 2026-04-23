@@ -1,4 +1,38 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, { attr: { class: 'flex flex-col gap-5' } }) }}
+
+    <div class="flex flex-col gap-1">
+        {{ form_label(form.title, 'Titre', { label_attr: { class: 'text-sm font-medium text-gray-700' } }) }}
+        {{ form_widget(form.title, { attr: { class: 'border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400' } }) }}
+        {{ form_errors(form.title) }}
+    </div>
+
+    <div class="flex flex-col gap-1">
+        {{ form_label(form.year, 'Année', { label_attr: { class: 'text-sm font-medium text-gray-700' } }) }}
+        {{ form_widget(form.year, { attr: { class: 'border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400' } }) }}
+        {{ form_errors(form.year) }}
+    </div>
+
+    <div class="flex flex-col gap-1">
+        {{ form_label(form.description, 'Description', { label_attr: { class: 'text-sm font-medium text-gray-700' } }) }}
+        {{ form_widget(form.description, { attr: { class: 'border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400' } }) }}
+        {{ form_errors(form.description) }}
+    </div>
+
+    <div class="flex flex-col gap-1">
+        {{ form_label(form.Author, 'Auteur', { label_attr: { class: 'text-sm font-medium text-gray-700' } }) }}
+        {{ form_widget(form.Author, { attr: { class: 'border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400' } }) }}
+        {{ form_errors(form.Author) }}
+    </div>
+
+    <div class="flex flex-col gap-1">
+        {{ form_label(form.category, 'Catégorie', { label_attr: { class: 'text-sm font-medium text-gray-700' } }) }}
+        {{ form_widget(form.category, { attr: { class: 'border border-gray-300 rounded-lg px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400' } }) }}
+        {{ form_errors(form.category) }}
+    </div>
+
+    <button type="submit"
+            class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-6 py-2 text-sm transition-colors cursor-pointer self-start">
+        {{ button_label|default('Enregistrer') }}
+    </button>
+
 {{ form_end(form) }}
