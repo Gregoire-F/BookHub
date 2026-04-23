@@ -5,4 +5,15 @@
 {% block body %}
     <h1>Bienvenue sur BookHub</h1>
     <p>Découvrez notre catalogue de livres et d'auteurs.</p>
+
+
+    <h2>Aperçu de notre selection</h2>
+    {% for book in books %}
+        <div>
+            <a href="{{ path('app_books_show', {'id': book.id}) }}">{{ book.title }}</a>
+            - {{ book.author.name }} ({{ book.year ? book.year|date('Y') : '' }})
+        </div>
+    {% endfor %}
+
+
 {% endblock %}
