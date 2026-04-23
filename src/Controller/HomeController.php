@@ -13,11 +13,5 @@ final class HomeController extends AbstractController
     {
         return $this->render('home/index.html.twig');
     }
-
-    #[Route('/book', name: 'app_book')]
-    public function book(): Response
-    {
-        return $this->render('book/index.html.twig');
-    }
     
 }
