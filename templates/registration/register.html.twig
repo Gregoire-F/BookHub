@@ -3,17 +3,39 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
 
+<div class="bg-gray-100 py-4 text-center">
+    <h1 class="font-bold text-3xl">Créer un compte</h1>
+</div>
+
+<section class="max-w-5xl mx-auto mt-10 bg-white rounded-xl shadow p-8">
     {{ form_errors(registrationForm) }}
+    {{ form_start(registrationForm, {
+        attr: { class: 'flex flex-col gap-6' }
+    }) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        <div class="flex flex-col gap-1">
+            {{ form_label(registrationForm.email, null, { label_attr: { class: 'text-sm font-medium text-gray-700' } }) }}
+            {{ form_widget(registrationForm.email, { attr: { class: 'bg-gray-200 border border-black rounded-lg px-3 py-2 w-full ml-2 focus:outline-none focus:ring-2 focus:ring-blue-400' } }) }}
+            {{ form_errors(registrationForm.email) }}
+        </div>
 
-        <button type="submit" class="btn">Register</button>
+        <div class="flex flex-col gap-1">
+            {{ form_label(registrationForm.plainPassword, 'Password', { label_attr: { class: 'text-sm font-medium text-gray-700' } }) }}
+            {{ form_widget(registrationForm.plainPassword, { attr: { class: 'bg-gray-200 border border-black rounded-lg px-3 py-2 w-full ml-2 focus:outline-none focus:ring-2 focus:ring-blue-400' } }) }}
+            {{ form_errors(registrationForm.plainPassword) }}
+        </div>
+
+        <div class="flex items-center gap-2">
+            {{ form_widget(registrationForm.agreeTerms) }}
+            {{ form_label(registrationForm.agreeTerms, null, { label_attr: { class: 'text-sm text-gray-700' } }) }}
+        </div>
+
+        <button type="submit" class="mx-auto rounded bg-blue-500 hover:bg-blue-600 px-4 py-2 text-white cursor-pointer">
+            Register
+        </button>
+
     {{ form_end(registrationForm) }}
+</section>
+
 {% endblock %}
