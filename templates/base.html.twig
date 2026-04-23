@@ -10,15 +10,25 @@
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
-
-        {% set frankenphpHotReload = app.request.server.get('FRANKENPHP_HOT_RELOAD') %}
-        {% if frankenphpHotReload %}
-        <meta name="frankenphp-hot-reload:url" content="{{ frankenphpHotReload }}">
-        <script src="https://cdn.jsdelivr.net/npm/idiomorph"></script>
-        <script src="https://cdn.jsdelivr.net/npm/frankenphp-hot-reload/+esm" type="module"></script>
-        {% endif %}
     </head>
     <body>
+        <nav>
+            {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                <a href="{{ path('app_login') }}">Login</a>
+                <a href="{{ path('app_register') }}">Register</a>
+            {% else %}
+                <a href="{{ path('app_books_index') }}">Voir tous les livres</a>
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('app_book_index') }}">Admin - Livres</a>
+                    <a href="{{ path('app_author_index') }}">Admin - Auteurs</a>
+                    <a href="{{ path('app_category_index') }}">Admin - Catégories</a>
+                {% endif %}
+
+                <a href="{{ path('app_logout') }}">Logout</a>
+            {% endif %}
+        </nav>
+
         {% block body %}{% endblock %}
     </body>
 </html>
