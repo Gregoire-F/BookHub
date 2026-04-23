@@ -16,9 +16,9 @@
         <section class="max-w-4xl bg-gray-800 text-white rounded mx-auto mt-6 p-4">  
             <h1 class="text-xl mb-3 font-semi-bold">Connectez-vous</h1>
             <label for="username">Email</label>
-            <input class="px-4 py-2 bg-gray-100 border-white" type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
+            <input class="px-4 py-2 bg-gray-500 border-white" type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
             <label for="password">Mot de passe</label>
-            <input class="px-4 py-2 bg-gray-100 border-white" type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+            <input class="px-4 py-2 bg-gray-500 border-white" type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
             <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
         
         {#
