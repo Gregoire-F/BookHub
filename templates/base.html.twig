@@ -12,10 +12,10 @@
         {% endblock %}
     </head>
     <body>
-        <nav>
+        <nav class="w-full text-white mx-auto flex justify-end gap-4 p-4 bg-gray-800">
             {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
-                <a href="{{ path('app_login') }}">Login</a>
-                <a href="{{ path('app_register') }}">Register</a>
+                <a class="bg-gray-600 rounded-lg px-4 py-2 cursor-pointer hover:bg-gray-700" href="{{ path('app_login') }}">Login</a>
+                <a class="bg-gray-600 rounded-lg px-4 py-2 cursor-pointer hover:bg-gray-700" href="{{ path('app_register') }}">Register</a>
             {% else %}
                 <a href="{{ path('app_books_index') }}">Voir tous les livres</a>
 
