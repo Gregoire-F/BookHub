@@ -17,24 +17,24 @@
     <a class="text-xl mr-2" href="{{ path('app_home') }}">{{ ux_icon('bi:house-fill') }}</a>
 
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <a class="text-sm hover:text-gray-300 transition-colors" href="{{ path('app_books_index') }}">Livres</a>
-        <a class="text-sm hover:text-gray-300 transition-colors" href="{{ path('app_authors_index') }}">Auteurs</a>
+        <a class="hover:text-gray-300 transition-colors" href="{{ path('app_books_index') }}">Livres</a>
+        <a class="hover:text-gray-300 transition-colors" href="{{ path('app_authors_index') }}">Auteurs</a>
 
         {% if is_granted('ROLE_ADMIN') %}
             <span class="text-gray-500 text-xs">|</span>
             <span class="text-gray-400 text-xs uppercase tracking-wider">Admin :</span>
-            <a class="text-sm hover:text-gray-300 transition-colors" href="{{ path('app_book_index') }}">Livres</a>
-            <a class="text-sm hover:text-gray-300 transition-colors" href="{{ path('app_author_index') }}">Auteurs</a>
-            <a class="text-sm hover:text-gray-300 transition-colors" href="{{ path('app_category_index') }}">Catégories</a>
+            <a class="hover:text-gray-300 transition-colors" href="{{ path('app_book_index') }}">Livres</a>
+            <a class="hover:text-gray-300 transition-colors" href="{{ path('app_author_index') }}">Auteurs</a>
+            <a class="hover:text-gray-300 transition-colors" href="{{ path('app_category_index') }}">Catégories</a>
         {% endif %}
 
-        <a class="ml-auto bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-2 text-sm transition-colors"
+        <a class="ml-auto bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-2 transition-colors"
            href="{{ path('app_logout') }}">Se déconnecter</a>
     {% else %}
         <div class="ml-auto flex gap-3">
-            <a class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-2 text-sm transition-colors"
+            <a class="bg-gray-600 hover:bg-gray-700 rounded-lg px-4 py-2 transition-colors"
                href="{{ path('app_login') }}">Se connecter</a>
-            <a class="bg-blue-500 hover:bg-blue-600 rounded-lg px-4 py-2 text-sm transition-colors"
+            <a class="bg-blue-500 hover:bg-blue-600 rounded-lg px-4 py-2 transition-colors"
                href="{{ path('app_register') }}">Créer un compte</a>
         </div>
     {% endif %}
