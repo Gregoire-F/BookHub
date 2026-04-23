@@ -1,0 +1,93 @@
+# BookHub
+
+Application Symfony de gestion de livres réalisée en binôme dans le cadre d'un TP Bachelor DWWM.
+
+## Prérequis
+
+- PHP 8.2
+- Composer
+- XAMPP (MySQL)
+- Symfony CLI
+
+## Installation
+
+1. Cloner le repository
+```bash
+git clone https://github.com/Gregoire-F/BookHub.git
+```
+
+2. Installer les dépendances
+```bash
+composer install
+```
+
+3. Créer le fichier `.env.local` à la racine
+⚠️ Chaque développeur doit mettre sa propre configuration 
+
+- Jules : DATABASE_URL="mysql://root:@127.0.0.1:3306/bookhub?serverVersion=8.0.30&charset=utf8mb4"
+- Grégoire : 
+
+4. Créer la base de données
+```bash
+php bin/console doctrine:database:create
+```
+(Le nom doit correspondre à celui du `.env.local`)
+
+5. Créer le schéma
+```bash 
+php bin/console doctrine:migrations:migrate
+```
+
+⚠️ En cas de problèmes de configurations 
+```bash
+php bin/console doctrine:schema:update --force
+```
+
+6. Charger les données de test
+```bash
+php bin/console doctrine:fixtures:load
+```
+- Création des tables et des relations 
+    - 5 Books, 5 Authors, 5 Category
+    - 1 User ["ROLE_ADMIN"] 
+
+7. Lancer le serveur
+```bash
+symfony serve
+```
+
+## Accès
+
+- Application : 
+    - http://localhost:PORT (Selon config)
+    - Jules (Xampp) -> http://localhost:8000
+    - Gregoire (Mampp) -> 
+
+### Login / Logout
+- /login - Page de connexion
+- /logout - Déconnexion
+- Admin : admin@admin.fr / motdepasse (⚠️ Mdp en clair dans le carde du TP)
+
+### Register
+- Possibilité de créer un compte (Rôle par défaut [] )
+
+## Routes publiques
+
+- `/` : page d'accueil
+- `/books` : liste des livres
+- `/books/{id}` : détail d'un livre
+- `/authors` : liste des auteurs
+
+## Routes admin (ROLE_ADMIN requis)
+
+- `/admin/book` : CRUD livres
+- `/admin/author` : CRUD auteurs
+- `/admin/category` : CRUD catégories
+
+## API
+
+*(à compléter)*
+
+## Tests
+
+*(à compléter)*
