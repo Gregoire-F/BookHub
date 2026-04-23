@@ -25,7 +25,7 @@ composer install
 ⚠️ Chaque développeur doit mettre sa propre configuration 
 
 - Jules : DATABASE_URL="mysql://root:@127.0.0.1:3306/bookhub?serverVersion=8.0.30&charset=utf8mb4"
-- Grégoire : 
+- Grégoire : DATABASE_URL="mysql://root:root@127.0.0.1:8889/bookhub?serverVersion=5.7.24"
 
 4. Créer la base de données
 ```bash
@@ -61,12 +61,12 @@ symfony serve
 - Application : 
     - http://localhost:PORT (Selon config)
     - Jules (Xampp) -> http://localhost:8000
-    - Gregoire (Mampp) -> 
+    - Gregoire (Mamp) -> http://127.0.0.1:8000/
 
 ### Login / Logout
 - /login - Page de connexion
 - /logout - Déconnexion
-- Admin : admin@admin.fr / motdepasse (⚠️ Mdp en clair dans le carde du TP)
+- Admin : admin@admin.fr / motdepasse (⚠️ Mdp en clair dans le cadre du TP)
 
 ### Register
 - Possibilité de créer un compte (Rôle par défaut [] )
