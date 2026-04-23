@@ -18,16 +18,6 @@ class Category
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'Book')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?self $category = null;
-
-    /**
-     * @var Collection<int, self>
-     */
-    #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'category', orphanRemoval: true)]
-    private Collection $Book;
-
     /**
      * @var Collection<int, Book>
      */
@@ -36,7 +26,6 @@ class Category
 
     public function __construct()
     {
-        $this->Book = new ArrayCollection();
         $this->book = new ArrayCollection();
     }
 
@@ -53,48 +42,6 @@ class Category
     public function setName(?string $name): static
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getCategory(): ?self
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?self $category): static
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, self>
-     */
-    public function getBook(): Collection
-    {
-        return $this->Book;
-    }
-
-    public function addBook(self $book): static
-    {
-        if (!$this->Book->contains($book)) {
-            $this->Book->add($book);
-            $book->setCategory($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBook(self $book): static
-    {
-        if ($this->Book->removeElement($book)) {
-            // set the owning side to null (unless already changed)
-            if ($book->getCategory() === $this) {
-                $book->setCategory(null);
-            }
-        }
 
         return $this;
     }
