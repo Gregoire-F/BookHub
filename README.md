@@ -119,6 +119,17 @@ Lecture seule (GET uniquement). Réponses en JSON. Accessible publiquement sans 
 ]
 ```
 
-## Tests
+## Tests fonctionnels
 
-*(à compléter)*
+Ajout des tests fonctionnels sur les 3 entités créées : Author, Book et Category. Les 3 entités sont en statut ok sur les tests. 
+
+commande : ./vendor/bin/phpunit --testdox (testdox nous permet d'avoir le detail du fichier testé)
+
+Author Controller
+ ✔ Author controller
+
+Book Controller
+ ✔ Book controller
+
+Category Controller
+ ✔ Category controller
