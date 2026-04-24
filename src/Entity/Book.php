@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
+use App\Entity\Author;
 use App\Repository\BookRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
 
 #[ORM\Entity(repositoryClass: BookRepository::class)]
 class Book
@@ -12,23 +14,29 @@ class Book
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['list', 'detail'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 80, nullable: true)]
+    #[Groups(['list', 'detail'])]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Groups(['list', 'detail'])]
     private ?\DateTime $year = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['detail'])]
     private ?string $description = null;
 
     #[ORM\ManyToOne(inversedBy: 'Book')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['list', 'detail'])]
     private ?Author $Author = null;
 
     #[ORM\ManyToOne(inversedBy: 'book')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['list', 'detail'])]
     private ?Category $category = null;
 
     public function getId(): ?int
