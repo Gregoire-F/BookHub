@@ -48,7 +48,7 @@ class AppFixtures extends Fixture
         foreach ($livres as [$title, $year, $description, $authorIndex, $categoryIndex]) {
             $book = new Book();
             $book->setTitle($title);
-            $book->setYear(new \DateTime($year));
+            $book->setYear(new \DateTime($year . '-01-01'));
             $book->setDescription($description);
             $book->setAuthor($authors[$authorIndex]);
             $book->setCategory($categories[$categoryIndex]);
