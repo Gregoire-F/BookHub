@@ -1,34 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Book{% endblock %}
+{% block title %}{{ book.title }}{% endblock %}
 
 {% block body %}
-    <h1>Book</h1>
+<section class="max-w-2xl mx-auto mt-8 px-4">
+    <a href="{{ path('app_book_index') }}"
+       class="text-sm text-gray-500 hover:text-gray-700 transition-colors mb-6 inline-block">
+        ← Retour à la liste
+    </a>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ book.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ book.title }}</td>
-            </tr>
-            <tr>
-                <th>Year</th>
-                <td>{{ book.year ? book.year|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ book.description }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="bg-white rounded-xl shadow p-8 flex flex-col gap-5">
+        <h1 class="font-bold text-2xl text-gray-800">{{ book.title }}</h1>
+        <hr class="border-gray-100">
 
-    <a href="{{ path('app_book_index') }}">back to list</a>
+        <div class="grid grid-cols-2 gap-4 text-sm">
+            <div class="flex flex-col gap-1">
+                <span class="text-gray-400 uppercase tracking-wide text-xs">Auteur</span>
+                <span class="text-gray-700">{{ book.author.name }}</span>
+            </div>
+            <div class="flex flex-col gap-1">
+                <span class="text-gray-400 uppercase tracking-wide text-xs">Année</span>
+                <span class="text-gray-700">{{ book.year ? book.year|date('Y') : '—' }}</span>
+            </div>
+            <div class="flex flex-col gap-1">
+                <span class="text-gray-400 uppercase tracking-wide text-xs">Catégorie</span>
+                <span class="text-gray-700">{{ book.category.name }}</span>
+            </div>
+        </div>
 
-    <a href="{{ path('app_book_edit', {'id': book.id}) }}">edit</a>
+        <div class="flex flex-col gap-2">
+            <span class="text-gray-400 uppercase tracking-wide text-xs">Description</span>
+            <p class="text-gray-600 leading-relaxed">{{ book.description }}</p>
+        </div>
 
-    {{ include('book/_delete_form.html.twig') }}
+        <hr class="border-gray-100">
+
+        <div class="flex gap-3 items-center">
+            <a href="{{ path('app_book_edit', {'id': book.id}) }}"
+               class="bg-gray-700 hover:bg-gray-800 text-white rounded-lg px-4 py-2 text-sm transition-colors">
+                Modifier
+            </a>
+            {{ include('book/_delete_form.html.twig') }}
+        </div>
+    </div>
+</section>
 {% endblock %}

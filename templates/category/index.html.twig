@@ -1,35 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category index{% endblock %}
+{% block title %}Admin - Catégories{% endblock %}
 
 {% block body %}
-    <h1>Category index</h1>
+<section class="max-w-4xl mx-auto mt-8 px-4">
+    <div class="flex items-center justify-between mb-6">
+        <h1 class="font-bold text-2xl text-gray-800">Catégories</h1>
+        <a href="{{ path('app_category_new') }}"
+           class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-4 py-2 text-sm transition-colors cursor-pointer">
+            + Nouveau
+        </a>
+    </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for category in categories %}
-            <tr>
-                <td>{{ category.id }}</td>
-                <td>{{ category.name }}</td>
-                <td>
-                    <a href="{{ path('app_category_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('app_category_edit', {'id': category.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_category_new') }}">Create new</a>
+    <div class="bg-white rounded-xl shadow overflow-hidden">
+        <table class="w-full text-sm">
+            <thead>
+                <tr class="bg-gray-50 text-gray-500 uppercase text-xs tracking-wider">
+                    <th class="px-4 py-3 text-left">ID</th>
+                    <th class="px-4 py-3 text-left">Nom</th>
+                    <th class="px-4 py-3 text-left">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for category in categories %}
+                <tr class="border-t border-gray-100 hover:bg-gray-50">
+                    <td class="px-4 py-3 text-gray-400">{{ category.id }}</td>
+                    <td class="px-4 py-3 font-medium text-gray-800">{{ category.name }}</td>
+                    <td class="px-4 py-3 flex gap-3">
+                        <a href="{{ path('app_category_show', {'id': category.id}) }}"
+                           class="text-blue-500 hover:text-blue-700 transition-colors">Voir</a>
+                        <a href="{{ path('app_category_edit', {'id': category.id}) }}"
+                           class="text-gray-500 hover:text-gray-700 transition-colors">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3" class="px-4 py-6 text-center text-gray-400 italic">Aucune catégorie trouvée</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
 {% endblock %}
