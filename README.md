@@ -86,8 +86,50 @@ symfony serve
 
 ## API
 
-*(à compléter)*
+Lecture seule (GET uniquement). Réponses en JSON. Accessible publiquement sans authentification.
 
-## Tests
+### Routes
 
-*(à compléter)*
+- `GET /api/books` : liste de tous les livres (id, titre, année, auteur, catégorie)
+- `GET /api/books/{id}` : détail d'un livre (+ description et catégorie)
+- `GET /api/authors` : liste de tous les auteurs et leurs livres
+
+### Gestion des erreurs
+
+- `200` : succès
+- `404` : livre introuvable (ex: `/api/books/999`)
+
+### Exemple de réponse `/api/books`
+
+```json
+[
+  {
+    "id": 1,
+    "title": "Les Misérables",
+    "year": "1862-01-01T00:00:00+00:00",
+    "Author": {
+      "id": 1,
+      "name": "Victor Hugo"
+    },
+    "category": {
+      "id": 1,
+      "name": "Roman"
+    }
+  }
+]
+```
+
+## Tests fonctionnels
+
+Ajout des tests fonctionnels sur les 3 entités créées : Author, Book et Category. Les 3 entités sont en statut ok sur les tests. 
+
+commande : ./vendor/bin/phpunit --testdox (testdox nous permet d'avoir le detail du fichier testé)
+
+Author Controller
+ ✔ Author controller
+
+Book Controller
+ ✔ Book controller
+
+Category Controller
+ ✔ Category controller
