@@ -86,7 +86,38 @@ symfony serve
 
 ## API
 
-*(à compléter)*
+Lecture seule (GET uniquement). Réponses en JSON. Accessible publiquement sans authentification.
+
+### Routes
+
+- `GET /api/books` : liste de tous les livres (id, titre, année, auteur, catégorie)
+- `GET /api/books/{id}` : détail d'un livre (+ description et catégorie)
+- `GET /api/authors` : liste de tous les auteurs et leurs livres
+
+### Gestion des erreurs
+
+- `200` : succès
+- `404` : livre introuvable (ex: `/api/books/999`)
+
+### Exemple de réponse `/api/books`
+
+```json
+[
+  {
+    "id": 1,
+    "title": "Les Misérables",
+    "year": "1862-01-01T00:00:00+00:00",
+    "Author": {
+      "id": 1,
+      "name": "Victor Hugo"
+    },
+    "category": {
+      "id": 1,
+      "name": "Roman"
+    }
+  }
+]
+```
 
 ## Tests
 
